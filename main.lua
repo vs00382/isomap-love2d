@@ -1,4 +1,6 @@
+local love = require("love")
 isomap = require ("isomap")
+
 function love.load()
 	--Variables
 	x = 0
