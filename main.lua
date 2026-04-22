@@ -9,7 +9,7 @@ function love.load()
 	zoom = 1
 
 	--Set background to deep blue
-	love.graphics.setBackgroundColor(0, 0, 69)
+	love.graphics.setBackgroundColor(0, 0, 69/255)
 	love.graphics.setDefaultFilter("linear", "linear", 8)
 
 

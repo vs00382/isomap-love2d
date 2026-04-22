@@ -55,7 +55,7 @@ local zoomLevel = 1
 
 function map.decodeJson(filename)
 	assert(filename, "Filename is nil!")
-	if not love.filesystem.isFile(filename) then error("Given filename is not a file! Is it a directory? Does it exist?") end
+	if not love.filesystem.getInfo(filename, "file") then error("Given filename is not a file! Is it a directory? Does it exist?") end
 
 	--Reads file
 	mapJson = love.filesystem.read(filename)
@@ -202,7 +202,7 @@ function map.drawGround(xOff, yOff, size)
 	assert(size)
 	zoomLevel = size
 	--Apply lighting
-	love.graphics.setColor(tonumber(mapLighting[1]), tonumber(mapLighting[2]), tonumber(mapLighting[3]), 255)
+	love.graphics.setColor(tonumber(mapLighting[1])/255, tonumber(mapLighting[2])/255, tonumber(mapLighting[3])/255, 1)
 
 	--Draw the flat ground layer for the map, without elevation or props.
 	for i in ipairs(mapPositions) do
@@ -235,9 +235,9 @@ function map.drawObjects(xOff, yOff, size)
 		local xPos, yPos = map.toIso(xPos, yPos)
 
 		if v.alpha then
-			love.graphics.setColor(255, 255, 255, 90)
+			love.graphics.setColor(1, 1, 1, 90/255)
 		else
-			love.graphics.setColor(255, 255, 255, 255)
+			love.graphics.setColor(1, 1, 1, 1)
 		end
 		love.graphics.draw(v.texture, xPos + xOff, yPos + yOff, 0, size, size, v.offX, v.offY)
 
